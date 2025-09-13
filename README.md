@@ -24,7 +24,7 @@
 
 Схема для редакс стор (на клиенте):
 
-- user: id / login / role_id
+- user: id / login / role_id / session
 - posts: array post: id / title / imageUrl / publishedAt / commentsCount
 - post: id / title / imageUrl / content / publishedAt / comments: массив comment: id / author / content / publishedAt
 - users: id / login / registeredAt / role

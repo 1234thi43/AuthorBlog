@@ -1,40 +1,63 @@
 import { Link } from 'react-router-dom';
-import { Icon } from '../../../../components';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Icon } from '../../../../components';
+import { ROLE } from '../../../../constants';
 import styled from 'styled-components';
+import {
+	selectUserRole,
+	selectUserLogin,
+	selectUserSession,
+} from '../../../../selectors';
+import { logout } from '../../../../actions';
 
 const RightAligned = styled.div`
+	height: 36px;
 	display: flex;
 	justify-content: flex-end;
-	margin-top: 10px;
+	align-items: center;
 `;
 
-const StyledLink = styled(Link)`
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	border: 1px solid black;
-	border-radius: 3px;
+const UserName = styled.div`
 	font-size: 18px;
-	width: 100px;
-	height: 25px;
+	font-weight: bold;
 `;
 
 const ControlPanelContainer = ({ className }) => {
+	const role_id = useSelector(selectUserRole);
+	const login = useSelector(selectUserLogin);
+	const session = useSelector(selectUserSession);
+
+	const dispatch = useDispatch();
+
+	// console.log('role_id', role_id);
+	// console.log('ROLE.GUEST', ROLE.GUEST);
+
 	return (
 		<div className={className}>
 			<RightAligned>
-				<div>username 123</div>
-				<StyledLink to="/login">Вход</StyledLink>
+				{role_id === ROLE.GUEST ? (
+					<Button padding="2px 0">
+						<Link to="/login">Вход</Link>
+					</Button>
+				) : (
+					<>
+						<UserName>{login}</UserName>
+						<Link onClick={() => dispatch(logout(session))}>
+							{/* Выход */}
+							<Icon icon_id="fa-sign-out" margin="0 0 0 10px" />
+						</Link>
+					</>
+				)}
 			</RightAligned>
 			<RightAligned>
 				<Link to={-1}>
-					<Icon icon_id="fa-backward" margin="0 0 0 15px" />
+					<Icon icon_id="fa-backward" margin="0 10px 0 0" />
 				</Link>
 				<Link to="/post">
-					<Icon icon_id="fa-file-text-o" margin="0 0 0 15px" />
+					<Icon icon_id="fa-file-text-o" margin="0 10px" />
 				</Link>
 				<Link to="/users">
-					<Icon icon_id="fa-users" margin="0 0 0 15px" />
+					<Icon icon_id="fa-users" margin="0 0 0 10px" />
 				</Link>
 			</RightAligned>
 		</div>
