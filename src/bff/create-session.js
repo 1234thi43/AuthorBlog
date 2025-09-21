@@ -1,32 +1,32 @@
-import { removeComment } from './sessions/remove-comment';
-import { ROLE } from '../constants';
+// import { removeComment } from './sessions/remove-comment';
+// import { ROLE } from '../constants';
 
-export const createSession = (roleId) => {
-	const session = {
-		logout() {
-			Object.keys(session).forEach((key) => {
-				delete session[key];
-			});
-		},
-	};
+// export const createSession = (roleId) => {
+// 	const session = {
+// 		logout() {
+// 			Object.keys(session).forEach((key) => {
+// 				delete session[key];
+// 			});
+// 		},
+// 	};
 
-	switch (roleId) {
-		case ROLE.ADMIN: {
-			session.removeComment = removeComment;
+// 	switch (roleId) {
+// 		case ROLE.ADMIN: {
+// 			session.removeComment = removeComment;
 
-			break;
-		}
-		case ROLE.MODERATOR: {
-			session.removeComment = removeComment;
+// 			break;
+// 		}
+// 		case ROLE.MODERATOR: {
+// 			session.removeComment = removeComment;
 
-			break;
-		}
-		case ROLE.READER: {
-			break;
-		}
-		default:
-		// ничего не делаем если айди роли не существует
-	}
+// 			break;
+// 		}
+// 		case ROLE.READER: {
+// 			break;
+// 		}
+// 		default:
+// 		// ничего не делаем если айди роли не существует
+// 	}
 
-	return session;
-};
+// 	return session;
+// };
