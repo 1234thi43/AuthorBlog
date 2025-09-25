@@ -4,7 +4,7 @@ import { Button, Icon } from '../../../../components';
 import { ROLE } from '../../../../constants';
 import styled from 'styled-components';
 import {
-	selectUserRole,
+	// selectUserRole,
 	selectUserLogin,
 	selectUserSession,
 } from '../../../../selectors';
@@ -23,7 +23,7 @@ const UserName = styled.div`
 `;
 
 const ControlPanelContainer = ({ className }) => {
-	const role_id = useSelector(selectUserRole);
+	// const role_id = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
 
@@ -32,18 +32,22 @@ const ControlPanelContainer = ({ className }) => {
 	// console.log('role_id', role_id);
 	// console.log('ROLE.GUEST', ROLE.GUEST);
 
+	const onLogout = () => {
+		dispatch(logout(session));
+		sessionStorage.removeItem('userData');
+	};
+
 	return (
 		<div className={className}>
 			<RightAligned>
-				{role_id === ROLE.GUEST ? (
+				{!session ? (
 					<Button padding="2px 0">
 						<Link to="/login">Вход</Link>
 					</Button>
 				) : (
 					<>
 						<UserName>{login}</UserName>
-						<Link onClick={() => dispatch(logout(session))}>
-							{/* Выход */}
+						<Link onClick={onLogout}>
 							<Icon icon_id="fa-sign-out" margin="0 0 0 10px" />
 						</Link>
 					</>

@@ -1,9 +1,12 @@
 // import viteLogo from '/vite.svg'
 import { Routes, Route, Link } from 'react-router-dom';
 import { Header, Footer } from './components';
-import { Authorization, Registration, Users } from './pages';
+import { Authorization, Registration, Users, Post } from './pages';
 import styled from 'styled-components';
 import './index.css';
+import { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from './actions';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -16,10 +19,29 @@ const AppColumn = styled.div`
 `;
 
 const Page = styled.div`
-	padding: 120px 0px;
+	padding: 120px 0 20px;
 `;
 
 function Blog() {
+	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		const currentUserDataJSON = sessionStorage.getItem('userData');
+
+		if (!currentUserDataJSON) {
+			return;
+		}
+
+		const currentUserData = JSON.parse(currentUserDataJSON);
+
+		dispatch(
+			setUser({
+				...currentUserData,
+				id: String(currentUserData.id),
+			}),
+		);
+	}, [dispatch]);
+
 	return (
 		<AppColumn>
 			<Header />
@@ -30,7 +52,7 @@ function Blog() {
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/post" element={<div>Новая статья</div>} />
-					<Route path="/post/:postId" element={<div>Статья</div>} />
+					<Route path="/post/:id" element={<Post />} />
 					<Route path="*" element={<div>Страница ошибки</div>} />
 				</Routes>
 			</Page>
