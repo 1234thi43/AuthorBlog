@@ -1,7 +1,7 @@
 // import viteLogo from '/vite.svg'
 import { Routes, Route, Link } from 'react-router-dom';
 import { Header, Footer } from './components';
-import { Authorization, Registration, Users, Post } from './pages';
+import { Authorization, Registration, Users, Post, Main } from './pages';
 import styled from 'styled-components';
 import './index.css';
 import { useLayoutEffect } from 'react';
@@ -48,7 +48,7 @@ function Blog() {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path="/" element={<div>Главная страница</div>} />
+					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
