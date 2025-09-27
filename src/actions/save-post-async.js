@@ -1,7 +1,9 @@
 import { setPostData } from './set-post-data';
 
-export const savePostAsync = (requestServer, newPostData) => (dispath) => {
+export const savePostAsync = (requestServer, newPostData) => (dispatch) => {
 	requestServer('savePost', newPostData).then((updatedPost) => {
-		dispath(setPostData(updatedPost.res));
+		dispatch(setPostData(updatedPost.res));
+		console.log(updatedPost);
+		return updatedPost.res;
 	});
 };

@@ -68,4 +68,8 @@ const ControlPanelContainer = ({ className }) => {
 	);
 };
 
-export const ControlPanel = styled(ControlPanelContainer)``;
+export const ControlPanel = styled(ControlPanelContainer)`
+	& i:hover {
+		cursor: pointer;
+	}
+`;
