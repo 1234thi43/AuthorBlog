@@ -17,6 +17,7 @@ const AppColumn = styled.div`
 	width: 1000px;
 	background-color: white;
 	margin: 0 auto;
+	position: relative;
 `;
 
 const Page = styled.div`

@@ -32,4 +32,5 @@ export const Header = styled(HeaderContainer)`
 	padding: 20px 40px;
 	background-color: white;
 	box-shadow: 0px 0px 20px #000;
+	z-index: 100;
 `;
