@@ -1,6 +1,6 @@
 // import viteLogo from '/vite.svg'
 import { Routes, Route, Link } from 'react-router-dom';
-import { Header, Footer } from './components';
+import { Header, Footer, Error } from './components';
 import { Authorization, Registration, Users, Post, Main } from './pages';
 import styled from 'styled-components';
 import './index.css';
@@ -8,6 +8,7 @@ import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
 import { Modal } from './components';
+import { ERROR } from './constants';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -56,8 +57,7 @@ function Blog() {
 					<Route path="/post" element={<Post />} />
 					<Route path="/post/:id" element={<Post />} />
 					<Route path="/post/:id/edit" element={<Post />} />
-					{/* <Route path="/post/:id/*" element={<div>Страница ошибки</div>} /> */}
-					<Route path="*" element={<div>Страница ошибки</div>} />
+					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
 				</Routes>
 			</Page>
 			<Footer />

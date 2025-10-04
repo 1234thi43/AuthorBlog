@@ -61,16 +61,18 @@ export const AuthorizationContainer = ({ className }) => {
 
 	const onSubmit = ({ login, password }) => {
 		server.authorize(login.trim(), password.trim()).then(({ error, res }) => {
-			// console.log('Логин:', login);
-			// console.log('Пароль:', password);
-
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
 
-			dispatch(setUser(res));
-			sessionStorage.setItem('userData', JSON.stringify(res));
+			const normalized = {
+				...res,
+				role_id: res.role_id ?? res.roleId,
+			};
+
+			dispatch(setUser(normalized));
+			sessionStorage.setItem('userData', JSON.stringify(normalized));
 		});
 	};
 

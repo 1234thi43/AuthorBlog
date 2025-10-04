@@ -41,7 +41,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
 						key={id}
 						postId={postId}
 						id={id}
-						author={author} // тут уже логин юзера
+						author={author}
 						content={content}
 						publishedAt={publishedAt}
 					/>

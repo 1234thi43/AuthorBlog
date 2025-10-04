@@ -23,14 +23,10 @@ const UserName = styled.div`
 `;
 
 const ControlPanelContainer = ({ className }) => {
-	// const role_id = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
 
 	const dispatch = useDispatch();
-
-	// console.log('role_id', role_id);
-	// console.log('ROLE.GUEST', ROLE.GUEST);
 
 	const onLogout = () => {
 		dispatch(logout(session));

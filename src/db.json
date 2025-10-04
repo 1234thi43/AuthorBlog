@@ -12,7 +12,7 @@
       "login": "danilw",
       "password": "qwerty123",
       "registered_at": "2025-09-14",
-      "role_id": 1
+      "role_id": 0
     },
     {
       "id": "228",
@@ -20,6 +20,27 @@
       "password": "qwerty123",
       "registered_at": "2025-09-14",
       "role_id": 1
+    },
+    {
+      "id": "da39",
+      "login": "danilWWW",
+      "password": "qwerty123",
+      "registered_at": "2025-10-04",
+      "role_id": 2
+    },
+    {
+      "id": "dfe1",
+      "login": "danilQQ",
+      "password": "qwerty123",
+      "registered_at": "2025-10-04",
+      "role_id": 2
+    },
+    {
+      "id": "4d99",
+      "login": "danil12345",
+      "password": "qwerty123",
+      "registered_at": "2025-10-04",
+      "role_id": 2
     }
   ],
   "roles": [
@@ -184,13 +205,6 @@
       "content": "новый коммент с временем"
     },
     {
-      "id": "63d0",
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "27.09.2025, 09:42",
-      "content": "Коммент номер 2"
-    },
-    {
       "id": "2218",
       "author_id": "001",
       "post_id": "077",
@@ -259,6 +273,20 @@
       "post_id": "001",
       "published_at": "30.09.2025, 19:33",
       "content": "ком без лога\n"
+    },
+    {
+      "id": "e9a2",
+      "author_id": "001",
+      "post_id": "001",
+      "published_at": "04.10.2025, 13:11",
+      "content": "flsdjgkjhsdg"
+    },
+    {
+      "id": "07ea",
+      "author_id": "4d99",
+      "post_id": "004",
+      "published_at": "05.10.2025, 00:40",
+      "content": "sdfsdfsd"
     }
   ],
   "sessions": [
@@ -331,171 +359,6 @@
     {
       "id": "3aee",
       "hash": "0.80088127569798384097765620026621036231517791748047",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "e4a0",
-      "hash": "0.65686688162642226096465947193792089819908142089844",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "ad9d",
-      "hash": "0.40370344506554967090039554022951051592826843261719",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "6c23",
-      "hash": "0.46261264866220652702821780621889047324657440185547",
-      "user": {
-        "id": "dda0",
-        "login": "danilQ",
-        "password": "qwerty123",
-        "registeredAt": "2025-09-14",
-        "roleId": 1
-      }
-    },
-    {
-      "id": "369b",
-      "hash": "0.68288063024556366897854786657262593507766723632813",
-      "user": {
-        "id": "228",
-        "login": "danilQ",
-        "password": "qwerty123",
-        "registeredAt": "2025-09-14",
-        "roleId": 1
-      }
-    },
-    {
-      "id": "c3a7",
-      "hash": "0.11258754745745369607590191662893630564212799072266",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "2c94",
-      "hash": "0.97536524172805771915051309406408108770847320556641",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "a2b3",
-      "hash": "0.65286170496616491298880191607167944312095642089844",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "d331",
-      "hash": "0.03132239626596733383934179073548875749111175537109",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "9586",
-      "hash": "0.05986279270234773353109858362586237490177154541016",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "8191",
-      "hash": "0.23124118501033930073162991902790963649749755859375",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "457d",
-      "hash": "0.31742704497642471039853262482210993766784667968750",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "71e3",
-      "hash": "0.37695683228797827180045487693860195577144622802734",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "cf42",
-      "hash": "0.35891576045741235834185545172658748924732208251953",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "5d48",
-      "hash": "0.34383310083034013260316896776203066110610961914063",
-      "user": {
-        "id": "001",
-        "login": "danil",
-        "password": "qwerty123",
-        "registeredAt": "2028-09-25",
-        "roleId": 0
-      }
-    },
-    {
-      "id": "9de5",
-      "hash": "0.64464448781514871456010951078496873378753662109375",
       "user": {
         "id": "001",
         "login": "danil",

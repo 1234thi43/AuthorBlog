@@ -55,7 +55,7 @@ const PostFormContainer = ({
 
 	const onImageChange = ({ target }) => setImageUrlValue(target.value);
 	const onTitleChange = ({ target }) => setTitleValue(target.value);
-	// console.log(id);
+
 	return (
 		<div className={className}>
 			<Input

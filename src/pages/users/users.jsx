@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import { H2, Content } from '../../components';
+import { H2, PrivateContent } from '../../components';
 import { useServerRequest } from '../../hooks';
 import { UserRow, TableRow } from './components';
 import { useEffect, useState } from 'react';
 import { ROLE } from '../../constants';
+import { checkAccess } from '../../utils';
+import { useSelector } from 'react-redux';
+import { selectUserRole } from '../../selectors';
 
 const UsersContainer = ({ className }) => {
 	const [roles, setRoles] = useState([]);
@@ -12,14 +15,23 @@ const UsersContainer = ({ className }) => {
 	const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
 
 	const requestServer = useServerRequest();
+	const userRole = useSelector(selectUserRole);
 
 	const onUserRemove = (userId) => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+
 		requestServer('removeUser', userId).then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList);
 		});
 	};
 
 	useEffect(() => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+
 		Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
 			([usersRes, rolesRes]) => {
 				if (usersRes.error || rolesRes.error) {
@@ -27,18 +39,15 @@ const UsersContainer = ({ className }) => {
 					return;
 				}
 
-				// console.log('rolesRes', rolesRes);
-				// console.log('usersRes', usersRes);
-
 				setUsers(usersRes.res);
 				setRoles(rolesRes.res);
 			},
 		);
-	}, [requestServer, shouldUpdateUserList]);
+	}, [requestServer, shouldUpdateUserList, userRole]);
 
 	return (
-		<div className={className}>
-			<Content error={errorMessage}>
+		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+			<div className={className}>
 				<H2>Пользователи</H2>
 				<div>
 					<TableRow>
@@ -47,22 +56,22 @@ const UsersContainer = ({ className }) => {
 						<div className="role-it-column">Роль</div>
 					</TableRow>
 
-					{users.map(({ id, login, registeredAt, roleId }) => (
+					{users.map(({ id, login, registeredAt, role_id }) => (
 						<UserRow
 							key={id}
 							id={id}
 							login={login}
 							registeredAt={registeredAt}
-							roleId={roleId}
+							roleId={role_id}
 							roles={roles.filter(
-								({ id: roleId }) => Number(roleId) !== ROLE.GUEST,
+								({ id: role_id }) => Number(role_id) !== ROLE.GUEST,
 							)}
 							onUserRemove={() => onUserRemove(id)}
 						/>
 					))}
 				</div>
-			</Content>
-		</div>
+			</div>
+		</PrivateContent>
 	);
 };
 

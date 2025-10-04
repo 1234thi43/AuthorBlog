@@ -66,8 +66,6 @@ export const RegistrationContainer = ({ className }) => {
 
 	const onSubmit = ({ login, password }) => {
 		server.register(login.trim(), password.trim()).then(({ error, res }) => {
-			// console.log('Логин:', login);
-			// console.log('Пароль:', password);
 
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);

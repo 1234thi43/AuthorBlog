@@ -11,9 +11,9 @@ export const authorize = async (authLogin, authPassword) => {
 		};
 	}
 
-	const { id, login } = user;
+	const { id, login, role_id, roleId, password } = user;
 
-	if (authPassword.trim() !== user.password) {
+	if (authPassword.trim() !== password) {
 		return {
 			error: 'Неверный пароль',
 			res: null,
@@ -25,7 +25,7 @@ export const authorize = async (authLogin, authPassword) => {
 		res: {
 			id,
 			login,
-			role_id: user.role_id,
+			role_id: role_id ?? roleId,
 			session: sessions.create(user),
 		},
 	};

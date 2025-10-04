@@ -5,10 +5,7 @@ import { sessions } from '../sessions';
 export const fetchUsers = async (hash) => {
 	const accessRoles = [ROLE.ADMIN];
 
-	// console.log('userSession', userSession);
-	// console.log('accessRoles', accessRoles);
-
-	const access = sessions.access(hash, accessRoles);
+	const access = await sessions.access(hash, accessRoles);
 
 	if (!access) {
 		return {
