@@ -6,9 +6,11 @@ import styled from 'styled-components';
 import {
 	// selectUserRole,
 	selectUserLogin,
+	selectUserRole,
 	selectUserSession,
 } from '../../../../selectors';
 import { logout } from '../../../../actions';
+import { checkAccess } from '../../../../utils';
 
 const RightAligned = styled.div`
 	height: 36px;
@@ -25,6 +27,7 @@ const UserName = styled.div`
 const ControlPanelContainer = ({ className }) => {
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
+	const roleId = useSelector(selectUserRole);
 
 	const dispatch = useDispatch();
 
@@ -32,6 +35,8 @@ const ControlPanelContainer = ({ className }) => {
 		dispatch(logout(session));
 		sessionStorage.removeItem('userData');
 	};
+
+	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
 
 	return (
 		<div className={className}>
@@ -53,18 +58,24 @@ const ControlPanelContainer = ({ className }) => {
 				<Link to={-1}>
 					<Icon icon_id="fa-backward" margin="0 10px 0 0" />
 				</Link>
-				<Link to="/post">
-					<Icon icon_id="fa-file-text-o" margin="0 10px" />
-				</Link>
-				<Link to="/users">
-					<Icon icon_id="fa-users" margin="0 0 0 10px" />
-				</Link>
+				{isAdmin && (
+					<>
+						<Link to="/post">
+							<Icon icon_id="fa-file-text-o" margin="0 10px" />
+						</Link>
+						<Link to="/users">
+							<Icon icon_id="fa-users" margin="0 0 0 10px" />
+						</Link>
+					</>
+				)}
 			</RightAligned>
 		</div>
 	);
 };
 
 export const ControlPanel = styled(ControlPanelContainer)`
+	min-width: 108.6px;
+
 	& i:hover {
 		cursor: pointer;
 	}
