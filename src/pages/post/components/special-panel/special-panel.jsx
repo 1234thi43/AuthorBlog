@@ -6,6 +6,7 @@ import { useServerRequest } from '../../../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { checkAccess } from '../../../../utils';
 import { ROLE } from '../../../../constants';
+import propTypes from 'prop-types';
 import { selectUserRole } from '../../../../selectors';
 
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
@@ -72,3 +73,9 @@ export const SpecialPanel = styled(SpecialPanelContainer)`
 		align-items: center;
 	}
 `;
+
+SpecialPanel.propTypes = {
+	id: propTypes.string.isRequired,
+	publishedAt: propTypes.string.isRequired,
+	editButton: propTypes.func.isRequired,
+};

@@ -40,7 +40,7 @@
       "login": "danil12345",
       "password": "qwerty123",
       "registered_at": "2025-10-04",
-      "role_id": 2
+      "role_id": 0
     }
   ],
   "roles": [
@@ -233,13 +233,6 @@
       "content": "sdfgdfg"
     },
     {
-      "id": "c403",
-      "author_id": "001",
-      "post_id": "003",
-      "published_at": "30.09.2025, 19:00",
-      "content": "sdfsdfgdf"
-    },
-    {
       "id": "0634",
       "author_id": "001",
       "post_id": "009",
@@ -266,13 +259,6 @@
       "post_id": "023",
       "published_at": "05.10.2025, 15:06",
       "content": "dsfgfdsg"
-    },
-    {
-      "id": "29c7",
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "05.10.2025, 15:06",
-      "content": "fsdgfdsg"
     },
     {
       "id": "3a5b",
@@ -308,6 +294,13 @@
       "post_id": "077",
       "published_at": "05.10.2025, 15:20",
       "content": "sdfg"
+    },
+    {
+      "id": "b5f4",
+      "author_id": "001",
+      "post_id": "001",
+      "published_at": "05.10.2025, 16:15",
+      "content": "sdfgdf"
     }
   ],
   "sessions": [
@@ -386,6 +379,17 @@
         "password": "qwerty123",
         "registeredAt": "2028-09-25",
         "roleId": 0
+      }
+    },
+    {
+      "id": "a7c7",
+      "hash": "0.01047668364835074861218799924245104193687438964844",
+      "user": {
+        "id": "001",
+        "login": "danil",
+        "password": "qwerty123",
+        "registeredAt": "2028-09-25",
+        "role_id": 0
       }
     }
   ]

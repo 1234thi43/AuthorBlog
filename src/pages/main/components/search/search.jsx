@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 import { Icon, Input } from '../../../../components';
 
 const SearchContainer = ({ className, searchPhrase, onChange }) => {
@@ -35,3 +36,8 @@ export const Search = styled(SearchContainer)`
 		cursor: pointer;
 	}
 `;
+
+Search.propTypes = {
+	searchPhrase: propTypes.string.isRequired,
+	onChange: propTypes.func.isRequired,
+};
