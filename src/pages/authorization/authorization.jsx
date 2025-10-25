@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { server } from '../../bff';
 import styled from 'styled-components';
 import { AuthFormError, Input, H2, Button } from '../../components';
 import { Link, Navigate } from 'react-router-dom';
@@ -11,6 +10,7 @@ import { selectUserRole } from '../../selectors';
 import { ROLE } from '../../constants';
 import { useState } from 'react';
 import { useResetForm } from '../../hooks';
+import { request } from '../../utils/request';
 
 const authFormSchema = yup.object().shape({
 	login: yup
@@ -26,7 +26,7 @@ const authFormSchema = yup.object().shape({
 			/^[\w#%]+$/,
 			'Неверно заполнен пароль. Допускаются только буквы, цифры и знаки # %',
 		)
-		.min(8, 'Неверный пароль. Минимальное количество символов для пароля - 8')
+		.min(6, 'Неверный пароль. Минимальное количество символов для пароля - 6')
 		.max(20, 'Неверный пароль. Максимальное количество символов для пароля - 20'),
 });
 
@@ -60,16 +60,18 @@ export const AuthorizationContainer = ({ className }) => {
 	useResetForm(reset);
 
 	const onSubmit = ({ login, password }) => {
-		server.authorize(login.trim(), password.trim()).then(({ error, res }) => {
+		request('/login', 'POST', { login, password }).then(({ error, user }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
 
 			const normalized = {
-				...res,
-				role_id: res.role_id ?? res.roleId,
+				...user,
+				role_id: user.role_id ?? user.roleId,
 			};
+
+			console.log(normalized);
 
 			dispatch(setUser(normalized));
 			sessionStorage.setItem('userData', JSON.stringify(normalized));

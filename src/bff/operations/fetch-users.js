@@ -7,6 +7,8 @@ export const fetchUsers = async (hash) => {
 
 	const access = await sessions.access(hash, accessRoles);
 
+	console.log('hash', hash)
+
 	if (!access) {
 		return {
 			error: 'Доступ запрещён',

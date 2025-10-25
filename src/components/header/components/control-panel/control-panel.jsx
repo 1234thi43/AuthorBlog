@@ -3,12 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Icon } from '../../../../components';
 import { ROLE } from '../../../../constants';
 import styled from 'styled-components';
-import {
-	// selectUserRole,
-	selectUserLogin,
-	selectUserRole,
-	selectUserSession,
-} from '../../../../selectors';
+import { selectUserLogin, selectUserRole } from '../../../../selectors';
 import { logout } from '../../../../actions';
 import { checkAccess } from '../../../../utils';
 
@@ -26,13 +21,12 @@ const UserName = styled.div`
 
 const ControlPanelContainer = ({ className }) => {
 	const login = useSelector(selectUserLogin);
-	const session = useSelector(selectUserSession);
 	const roleId = useSelector(selectUserRole);
 
 	const dispatch = useDispatch();
 
 	const onLogout = () => {
-		dispatch(logout(session));
+		dispatch(logout());
 		sessionStorage.removeItem('userData');
 	};
 
@@ -41,7 +35,7 @@ const ControlPanelContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<RightAligned>
-				{!session ? (
+				{!login ? (
 					<Button padding="2px 0">
 						<Link to="/login">Вход</Link>
 					</Button>

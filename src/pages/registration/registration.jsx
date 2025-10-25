@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { server } from '../../bff';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { AuthFormError, Input, H2, Button } from '../../components';
@@ -11,6 +10,7 @@ import { setUser } from '../../actions';
 import { selectUserRole } from '../../selectors';
 import { ROLE } from '../../constants';
 import { useResetForm } from '../../hooks';
+import { request } from '../../utils/request';
 
 const regFormSchema = yup.object().shape({
 	login: yup
@@ -26,7 +26,7 @@ const regFormSchema = yup.object().shape({
 			/^[\w#%]+$/,
 			'Неверно заполнен пароль. Допускаются только буквы, цифры и знаки # %',
 		)
-		.min(8, 'Неверный пароль. Минимальное количество символов для пароля - 8')
+		.min(6, 'Неверный пароль. Минимальное количество символов для пароля - 6')
 		.max(20, 'Неверный пароль. Максимальное количество символов для пароля - 20'),
 	passcheck: yup
 		.string()
@@ -65,15 +65,14 @@ export const RegistrationContainer = ({ className }) => {
 	useResetForm(reset);
 
 	const onSubmit = ({ login, password }) => {
-		server.register(login.trim(), password.trim()).then(({ error, res }) => {
-
+		request('/register', 'POST', { login, password }).then(({ error, user }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
 
-			dispatch(setUser(res));
-			sessionStorage.setItem('userData', JSON.stringify(res));
+			dispatch(setUser(user));
+			sessionStorage.setItem('userData', JSON.stringify(user));
 		});
 	};
 
