@@ -4,11 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { PostContent, Comments, PostForm } from './components';
 import { useParams, useMatch } from 'react-router-dom';
 import { loadPostAsync, RESET_POST_DATA } from '../../actions';
-import { useServerRequest } from '../../hooks';
 import { selectPost } from '../../selectors';
 import { Error, PrivateContent } from '../../components';
 import { ROLE } from '../../constants';
-// import { initialPostState } from '../../reducers/post-reducer';
 
 const PostContainer = ({ className }) => {
 	const [error, setError] = useState(null);
@@ -16,7 +14,6 @@ const PostContainer = ({ className }) => {
 	const params = useParams();
 	const isCreating = !!useMatch('/post');
 	const isEditing = !!useMatch('/post/:id/edit');
-	const requestServer = useServerRequest();
 	const post = useSelector(selectPost);
 
 	useLayoutEffect(() => {
@@ -28,10 +25,10 @@ const PostContainer = ({ className }) => {
 			return;
 		}
 
-		dispatch(loadPostAsync(requestServer, params.id)).then((postData) => {
+		dispatch(loadPostAsync(params.id)).then((postData) => {
 			setError(postData.error);
 		});
-	}, [dispatch, requestServer, params.id, isCreating]);
+	}, [dispatch, params.id, isCreating]);
 
 	const SpecificPostPage =
 		isCreating || isEditing ? (

@@ -11,3 +11,5 @@ export * from './save-post-async';
 export * from './remove-post-async';
 export * from './reset-post-data';
 export * from './load-post-async';
+export * from './add-comment';
+export * from './remove-comment';
