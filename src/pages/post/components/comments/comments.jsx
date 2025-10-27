@@ -21,6 +21,8 @@ const CommentsContainer = ({ className, comments, postId }) => {
 
 	const isGuest = userRole === ROLE.GUEST;
 
+	console.log(comments);
+
 	return (
 		<div className={className}>
 			{!isGuest && (
@@ -40,21 +42,12 @@ const CommentsContainer = ({ className, comments, postId }) => {
 				</div>
 			)}
 			<div className="comments">
-				{comments.map(({ _id, author, content, publishedAt }) => (
-					// <Comment
-					// 	key={id}
-					// 	postId={postId}
-					// 	id={id}
-					// 	author={author}
-					// 	content={content}
-					// 	publishedAt={publishedAt}
-					// />
-
+				{comments.map(({ _id, id, author, content, publishedAt }) => (
 					<Comment
-						key={_id} // уникальный ключ
+						key={_id || id}
 						postId={postId}
-						id={_id} // используем _id для идентификатора
-						author={author?.login || 'Unknown'} // выводим login, если есть
+						id={_id || id}
+						author={author?.login || author || 'Unknown'}
 						content={content}
 						publishedAt={publishedAt}
 					/>
