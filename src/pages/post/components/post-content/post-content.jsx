@@ -3,6 +3,7 @@ import { H2, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
 import { useNavigate } from 'react-router-dom';
 import { PROP_TYPE } from '../../../../constants';
+import { useEffect, useState } from 'react';
 
 const PostContentContainer = ({
 	className,
@@ -10,9 +11,15 @@ const PostContentContainer = ({
 }) => {
 	const navigate = useNavigate();
 
+	const [currentImageUrl, setCurrentImageUrl] = useState(imageUrl);
+
+	useEffect(() => {
+		setCurrentImageUrl(imageUrl);
+	}, [imageUrl]);
+
 	return (
 		<div className={className}>
-			{imageUrl && <img src={imageUrl} alt={title} />}
+			{currentImageUrl && <img src={currentImageUrl} alt={title} />}
 			<H2>{title}</H2>
 			<SpecialPanel
 				id={id}
