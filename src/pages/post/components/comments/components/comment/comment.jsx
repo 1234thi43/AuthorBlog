@@ -39,7 +39,10 @@ const CommentContainer = ({ className, postId, id, author, publishedAt, content 
 					</div>
 					<div className="publishedAt">
 						<Icon icon_id="fa-calendar-o" size="18px" margin="0 10px 0 0" />{' '}
-						{publishedAt}
+						{new Date(publishedAt)
+							.toISOString()
+							.slice(0, 16)
+							.replace('T', ' ')}
 					</div>{' '}
 				</div>
 				<div className="comment-text">{content}</div>
@@ -81,7 +84,7 @@ export const Comment = styled(CommentContainer)`
 
 Comment.propTypes = {
 	postId: propTypes.string.isRequired,
-	id: propTypes.number.isRequired,
+	id: propTypes.string.isRequired,
 	author: propTypes.string.isRequired,
 	content: propTypes.string.isRequired,
 	publishedAt: propTypes.string.isRequired,
