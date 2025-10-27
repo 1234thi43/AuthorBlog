@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { Icon } from '../../../../components';
 import { TableRow } from '../table-row/table-row';
 import { useState } from 'react';
-import { useServerRequest } from '../../../../hooks';
-import propTypes from 'prop-types';
-import { PROP_TYPE } from '../../../../constants';
+import { request } from '../../../../utils/request';
 
 const UserRowContainer = ({
 	className,
@@ -18,8 +16,6 @@ const UserRowContainer = ({
 	const [initialRoleId, setInitialRoleId] = useState(userRoleId);
 	const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
 
-	const requestServer = useServerRequest();
-
 	const isSaveButtonDisabled = selectedRoleId === initialRoleId;
 
 	const onRoleChange = ({ target }) => {
@@ -27,7 +23,7 @@ const UserRowContainer = ({
 	};
 
 	const onRoleSave = (userId, newUserRoleId) => {
-		requestServer('updateUserRole', userId, newUserRoleId).then(() => {
+		request(`/users/${userId}`, 'PATCH', { roleId: newUserRoleId }).then(() => {
 			setInitialRoleId(newUserRoleId);
 		});
 	};
@@ -67,12 +63,3 @@ export const UserRow = styled(UserRowContainer)`
 		font-size: 16px;
 	}
 `;
-
-UserRow.propTypes = {
-	id: propTypes.string.isRequired,
-	login: propTypes.string.isRequired,
-	registeredAt: propTypes.string.isRequired,
-	roleId: PROP_TYPE.ROLE.isRequired,
-	roles: propTypes.arrayOf(PROP_TYPE.ROLE).isRequired,
-	onUserRemove: propTypes.func.isRequired,
-};
