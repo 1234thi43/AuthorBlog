@@ -36,7 +36,7 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 				{publishedAt && (
 					<Icon icon_id="fa-calendar-o" size="18px" margin="0 10px 0 0" />
 				)}
-				{publishedAt}
+				{publishedAt && publishedAt.slice(0, 10)}
 			</div>
 
 			{isAdmin && (

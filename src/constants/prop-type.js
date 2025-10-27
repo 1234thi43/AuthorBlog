@@ -1,8 +1,6 @@
 import propTypes from 'prop-types';
-import { ROLE } from '../bff/constants';
 
 export const PROP_TYPE = {
-	ROLE: propTypes.oneOf(Object.values(ROLE)),
 	ERROR: propTypes.oneOfType([propTypes.string, propTypes.exact(null)]),
 	COMMENT: propTypes.shape({
 		id: propTypes.number.isRequired,

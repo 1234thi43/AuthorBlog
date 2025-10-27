@@ -24,7 +24,7 @@ const PostCardContainer = ({
 								margin="0 10px 0 0"
 								size="18px"
 							/>
-							{publishedAt}
+							{publishedAt && publishedAt.slice(0, 10)}
 						</div>
 						<div>
 							<Icon

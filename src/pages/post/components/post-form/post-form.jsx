@@ -35,9 +35,21 @@ const PostFormContainer = ({
 			}),
 		);
 
+		// if (dispatched && typeof dispatched.then === 'function') {
+		// 	dispatched.then(({ id }) => navigate(`/post/${id}`));
+		// } else {
+		// 	navigate(`/post/${id}`);
+		// }
+
 		if (dispatched && typeof dispatched.then === 'function') {
-			dispatched.then(({ id }) => navigate(`/post/${id}`));
+			// dispatched.then((data) => {
+			// 	console.log('then data:', data);
+			// 	navigate(`/post/${data?.id}`);
+			// });
+
+			dispatched.then(({ id, _id }) => navigate(`/post/${id || _id}`));
 		} else {
+			console.log('no promise dispatched');
 			navigate(`/post/${id}`);
 		}
 	};
