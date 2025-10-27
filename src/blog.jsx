@@ -1,4 +1,3 @@
-// import viteLogo from '/vite.svg'
 import { Routes, Route, Link } from 'react-router-dom';
 import { Header, Footer, Error } from './components';
 import { Authorization, Registration, Users, Post, Main } from './pages';
